@@ -8,7 +8,7 @@ DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
 MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
-
+TEST_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 COMMA=,
 EMPTY=
 SPACE=$(EMPTY) $(EMPTY)
@@ -35,6 +35,16 @@ record10:
 
 record20:
 	$(PYTHON) manage.py drive --js --myconfig=configs/myconfig_20Hz.py
+
+
+run_test: models/test.h5
+	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
+
+train_test: models/test.h5
+	make models/test.h5
+
+models/test.h5: $(TEST_DATASET)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
 
 
 
