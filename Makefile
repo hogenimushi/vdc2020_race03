@@ -7,14 +7,20 @@ SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
-MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
+GENERATED_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 TEST_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
+
+
+CURRENT_DATASET = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 
 PREVIOUS_START = $(shell find previous_10Hz -name 'start*_v3' -type d | tr '\n' ' ')
 PREVIOUS_PRE = $(shell find previous_10Hz -name 'pre_*' -type d | tr '\n' ' ')
 PREVIOUS_LAP = $(shell find previous_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 
-PREVIOUS_MAIN = $(MAIN_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(PREVIOUS_LAP) 
+PREVIOUS_MAIN = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(PREVIOUS_LAP) 
+
+MAIN_DATASET = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) \
+$(PREVIOUS_LAP) $(CURRENT_DATASET)
 
 COMMA=,
 EMPTY=
@@ -133,7 +139,7 @@ dakouhidari_003:
 
 dakouhidari_004:
 	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_004 --output data/previous_dakouhidari_004 --file previous_10Hz/dakouhidari_004.txt
-	
+
 sayu:
 	make right
 	make left
