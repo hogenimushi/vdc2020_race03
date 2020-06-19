@@ -14,7 +14,7 @@ PREVIOUS_START = $(shell find previous_10Hz -name 'start*_v3' -type d | tr '\n' 
 PREVIOUS_PRE = $(shell find previous_10Hz -name 'pre_*' -type d | tr '\n' ' ')
 PREVIOUS_LAP = $(shell find previous_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 
-PREVIOUS_MAIN = $(MAIN_DATASET) $(MAIN_START) $(MAIN_PRE) $(MAIN_LAP) 
+PREVIOUS_MAIN = $(MAIN_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(PREVIOUS_LAP) 
 
 COMMA=,
 EMPTY=
