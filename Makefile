@@ -85,16 +85,16 @@ kabe:
 	make kabe_003
 	make kabe_004
 kabe_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_001 --output data/kabe_001 --file previous_10Hz/kabe_001.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_001 --output data/previous_kabe_001 --file previous_10Hz/kabe_001.txt
 
 kabe_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_002 --output data/kabe_002 --file previous_10Hz/kabe_002.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_002 --output data/previous_kabe_002 --file previous_10Hz/kabe_002.txt
 
 kabe_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_003 --output data/kabe_003 --file previous_10Hz/kabe_003.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_003 --output data/previous_kabe_003 --file previous_10Hz/kabe_003.txt
 
 kabe_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_004 --output data/kabe_004 --file previous_10Hz/kabe_004.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_004 --output data/previous_kabe_004 --file previous_10Hz/kabe_004.txt
 
 dakou:
 	make dakoumigi_001
@@ -108,38 +108,38 @@ dakou:
 	make dakouhidari_004
 
 dakoumigi_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_001 --output data/dakoumigi_001 --file previous_10Hz/dakoumigi_001.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_001 --output data/previous_dakoumigi_001 --file previous_10Hz/dakoumigi_001.txt
 
 dakoumigi_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_002 --output data/dakoumigi_002 --file previous_10Hz/dakoumigi_002.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_002 --output data/previous_dakoumigi_002 --file previous_10Hz/dakoumigi_002.txt
 
 dakoumigi_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_003 --output data/dakoumigi_003 --file previous_10Hz/dakoumigi_003.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_003 --output data/previous_dakoumigi_003 --file previous_10Hz/dakoumigi_003.txt
 
 dakoumigi_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_004 --output data/dakoumigi_004 --file previous_10Hz/dakoumigi_004.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_004 --output data/previous_dakoumigi_004 --file previous_10Hz/dakoumigi_004.txt
 
 dakoumigi_005:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_005 --output data/dakoumigi_005 --file previous_10Hz/dakoumigi_005.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_005 --output data/previous_dakoumigi_005 --file previous_10Hz/dakoumigi_005.txt
 
 dakouhidari_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_001 --output data/dakouhidari_001 --file previous_10Hz/dakouhidari_001.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_001 --output data/previous_dakouhidari_001 --file previous_10Hz/dakouhidari_001.txt
 
 dakouhidari_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_002 --output data/dakouhidari_002 --file previous_10Hz/dakouhidari_002.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_002 --output data/previous_dakouhidari_002 --file previous_10Hz/dakouhidari_002.txt
 
 dakouhidari_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_003 --output data/dakouhidari_003 --file previous_10Hz/dakouhidari_003.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_003 --output data/previous_dakouhidari_003 --file previous_10Hz/dakouhidari_003.txt
 
 dakouhidari_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_004 --output data/dakouhidari_004 --file previous_10Hz/dakouhidari_004.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_004 --output data/previous_dakouhidari_004 --file previous_10Hz/dakouhidari_004.txt
 	
 sayu:
 	make right
 	make left
 
 right:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/right_001/ --output data/trimright --file previous_10Hz/trimright.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/right_001/ --output data/previous_trimright --file previous_10Hz/trimright.txt
 
 left:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/left_001/ --output data/trimleft --file previous_10Hz/trimleft.txt
+	$(PYTHON) scripts/trimming.py --input previous_10Hz/left_001/ --output data/previous_trimleft --file previous_10Hz/trimleft.txt
