@@ -91,6 +91,8 @@ dataset:
 	make kabe
 	make dakou
 	make sayu
+	make hukki
+
 kabe:
 	make kabe_001
 	make kabe_002
@@ -155,3 +157,27 @@ right:
 
 left:
 	$(PYTHON) scripts/trimming.py --input previous_10Hz/left_001/ --output data/previous_trimleft --file previous_10Hz/trimleft.txt
+
+hukki:
+	make hukki_4
+hukki_4:
+	make hukki_4_01
+	make hukki_4_02
+	make hukki_4_03
+	make hukki_4_04
+	make hukki_4_05
+
+hukki_4_01:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_01/ --output data/hukki_4_01 --file data_10Hz/hukki_4_01.txt
+
+hukki_4_02:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_02/ --output data/hukki_4_02 --file data_10Hz/hukki_4_02.txt
+
+hukki_4_03:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_03/ --output data/hukki_4_03 --file data_10Hz/hukki_4_03.txt
+
+hukki_4_04:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_04/ --output data/hukki_4_04 --file data_10Hz/hukki_4_04.txt
+
+hukki_4_05:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_05/ --output data/hukki_4_05 --file data_10Hz/hukki_4_05.txt
