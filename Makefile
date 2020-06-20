@@ -19,7 +19,8 @@ data/hukki_4_04.trimmed data/hukki_4_05.trimmed
 HUKKI_05 = data/hukki_5_01.trimmed data/hukki_5_02.trimmed data/hukki_5_03.trimmed
 HUKKI_06 = data/hukki_6_01.trimmed data/hukki_6_02.trimmed data/hukki_6_03.trimmed data/hukki_6_04.trimmed data/hukki_6_05.trimmed data/hukki_6_06.trimmed data/hukki_6_07.trimmed data/hukki_6_08.trimmed data/hukki_6_09.trimmed data/hukki_6_10.trimmed
 HUKKI_07 = data/hukki_5_01.trimmed data/hukki_5_02.trimmed
-TRM_HUKKI = $(HUKKI_01) $(HUKKI_02) $(HUKKI_03) $(HUKKI_04) $(HUKKI_05) $(HUKKI_06) $(HUKKI_07)
+HUKKI_08 = data/hukki_8_01.trimmed data/hukki_8_02.trimmed data/hukki_8_03.trimmed data/hukki_8_04.trimmed data/hukki_8_05.trimmed
+TRM_HUKKI = $(HUKKI_01) $(HUKKI_02) $(HUKKI_03) $(HUKKI_04) $(HUKKI_05) $(HUKKI_06) $(HUKKI_07) $(HUKKI_08)
 TRM_KABE = data/kabe_001.trimmed data/kabe_002.trimmed data/kabe_003.trimmed data/kabe_004.trimmed 
 TRM_DAKOU = data/dakoumigi_001.trimmed data/dakoumigi_002.trimmed data/dakoumigi_003.trimmed \
 data/dakoumigi_004.trimmed data/dakoumigi_005.trimmed data/dakouhidari_001.trimmed \
