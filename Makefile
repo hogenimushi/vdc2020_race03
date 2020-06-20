@@ -25,8 +25,8 @@ TRM_DAKOU = data/dakoumigi_001.trimmed data/dakoumigi_002.trimmed data/dakoumigi
 data/dakoumigi_004.trimmed data/dakoumigi_005.trimmed data/dakouhidari_001.trimmed \
 data/dakouhidari_002.trimmed data/dakouhidari_003.trimmed data/dakouhidari_004.trimmed
 TRM_SAYU = data/left_001.trimmed data/right_001.trimmed
-
-TRM_ALL = $(TRM_HUKKI) $(TRM_KABE) $(TRM_DAKOU) $(TRM_SAYU)
+TRM_ALT = data/alt_03_001.trimmed data/alt_03_002.trimmed data/alt_03_003.trimmed data/alt_03_004.trimmed 
+TRM_ALL = $(TRM_HUKKI) $(TRM_KABE) $(TRM_DAKOU) $(TRM_SAYU) $(TRM_ALT)
 
 #
 GENERATED_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
