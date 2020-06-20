@@ -18,11 +18,12 @@ PREVIOUS_PRE = $(shell find previous_10Hz -name 'pre_*' -type d | tr '\n' ' ')
 PREVIOUS_LAP = $(shell find previous_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 
 START_DATA = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
+LAP = $(shell find data_10Hz -name 'lap*' -type d | tr '\n' ' ')
 
 PREVIOUS_MAIN = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(PREVIOUS_LAP) 
 
 MAIN_DATASET = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(START_DATA) \
-$(PREVIOUS_LAP) $(CURRENT_DATASET)
+$(PREVIOUS_LAP) $(LAP)
 
 COMMA=,
 EMPTY=
