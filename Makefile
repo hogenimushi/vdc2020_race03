@@ -44,7 +44,7 @@ PREVIOUS_LAP = $(shell find previous_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 START_DATA = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
 LAP = $(shell find data_10Hz -name 'lap*' -type d | tr '\n' ' ')
 
-PREVIOUS_MAIN = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(PREVIOUS_LAP) 
+PREVIOUS_MAIN = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_LAP) 
 
 MAIN_DATASET = $(GENERATED_DATASET) $(PREVIOUS_START) $(PREVIOUS_PRE) $(START_DATA) \
 $(PREVIOUS_LAP) $(LAP)
@@ -62,7 +62,7 @@ sim:
 	$(SIMULATOR) &
 	@echo "Launching simulator..."
 
-run_linear: prebuilt/linear.h5
+run_linear: models/linear.h5
 	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
 
 record: record10
