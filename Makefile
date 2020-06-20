@@ -198,14 +198,13 @@ hukki_2_08:
 hukki_3:
 	make hukki_3_01
 	make hukki_3_02
-	make hukki_3_03
-	make hukki_3_04
-	make hukki_3_05
-	make hukki_3_06
-	make hukki_3_07
-	make hukki_3_08
-	make hukki_3_09
+hukki_3_01:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_3_01/ --output data/hukki_3_01 --file data_10Hz/hukki_3_01.txt
 
+hukki_3_02:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_3_02/ --output data/hukki_3_02 --file data_10Hz/hukki_3_02.txt
+
+	
 hukki_4:
 	make hukki_4_01
 	make hukki_4_02
