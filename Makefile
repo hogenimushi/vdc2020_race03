@@ -7,6 +7,25 @@ SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
+#Trimming
+HUKKI_01 = data/hukki_1_01.trimmed data/hukki_1_02.trimmed data/hukki_1_03.trimmed data/hukki_1_04.trimmed \
+data/hukki_1_05.trimmed data/hukki_1_06.trimmed data/hukki_1_07.trimmed data/hukki_1_08.trimmed \
+data/hukki_1_09.trimmed data/hukki_1_10.trimmed
+HUKKI_02 = data/hukki_2_01.trimmed data/hukki_2_02.trimmed data/hukki_2_03.trimmed data/hukki_2_04.trimmed \
+data/hukki_2_05.trimmed data/hukki_2_06.trimmed data/hukki_2_07.trimmed data/hukki_2_08.trimmed 
+HUKKI_03 = data/hukki_3_01.trimmed data/hukki_3_02.trimmed 
+HUKKI_04 = data/hukki_4_01.trimmed data/hukki_4_02.trimmed data/hukki_4_03.trimmed \
+data/hukki_4_04.trimmed data/hukki_4_05.trimmed 
+TRM_HUKKI = $(HUKKI_01) $(HUKKI_02) $(HUKKI_03) $(HUKKI_04)
+TRM_KABE = data/kabe_001.trimmed data/kabe_002.trimmed data/kabe_003.trimmed data/kabe_004.trimmed 
+TRM_DAKOU = data/dakoumigi_001.trimmed data/dakoumigi_002.trimmed data/dakoumigi_003.trimmed \
+data/dakoumigi_004.trimmed data/dakoumigi_005.trimmed data/dakouhidari_001.trimmed \
+data/dakouhidari_002.trimmed data/dakouhidari_003.trimmed data/dakouhidari_004.trimmed
+TRM_SAYU = data/left_001.trimmed data/right_001.trimmed
+
+TRM_ALL = $(TRM_HUKKI) $(TRM_KABE) $(TRM_DAKOU) $(TRM_SAYU)
+
+#
 GENERATED_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 TEST_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 
@@ -64,6 +83,9 @@ models/test.h5: $(TEST_DATASET)
 
 
 
+dataset: $(TRM_ALL)
+
+
 # This shows how to use trim
 trim_crash_001:
 	$(PYTHON) scripts/trimming.py --input data_20Hz/crash_001 --output data_generated_20Hz/crash_001 --file data_20Hz/crash_001_trim.txt
@@ -90,186 +112,15 @@ models/rnn2.h5: $(MAIN_DATASET)
 models/previous_linear.h5: $(PREVIOUS_MAIN)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
 
-dataset:
-	make kabe
-	make dakou
-	make sayu
-	make hukki
 
-kabe:
-	make kabe_001
-	make kabe_002
-	make kabe_003
-	make kabe_004
-kabe_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_001 --output data/previous_kabe_001 --file previous_10Hz/kabe_001.txt
+## Trimming rules
+## Target: data/xxx.trimmed 
+## Data directory:data_10Hz/xxx 
+## Trim file: data_10Hz/xxx.trim
+## Generated dir: data/xxx.trimmed_<num>
 
-kabe_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_002 --output data/previous_kabe_002 --file previous_10Hz/kabe_002.txt
+.PHONY: .trimmed
+data/%.trimmed: data_10Hz/%.trim
+	$(PYTHON) scripts/trimming.py --input $(<D)/$* --output $@ --file $<
 
-kabe_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_003 --output data/previous_kabe_003 --file previous_10Hz/kabe_003.txt
-
-kabe_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/kabe_004 --output data/previous_kabe_004 --file previous_10Hz/kabe_004.txt
-
-dakou:
-	make dakoumigi_001
-	make dakoumigi_002
-	make dakoumigi_003
-	make dakoumigi_004
-	make dakoumigi_005
-	make dakouhidari_001
-	make dakouhidari_002
-	make dakouhidari_003
-	make dakouhidari_004
-
-dakoumigi_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_001 --output data/previous_dakoumigi_001 --file previous_10Hz/dakoumigi_001.txt
-
-dakoumigi_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_002 --output data/previous_dakoumigi_002 --file previous_10Hz/dakoumigi_002.txt
-
-dakoumigi_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_003 --output data/previous_dakoumigi_003 --file previous_10Hz/dakoumigi_003.txt
-
-dakoumigi_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_004 --output data/previous_dakoumigi_004 --file previous_10Hz/dakoumigi_004.txt
-
-dakoumigi_005:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakoumigi_005 --output data/previous_dakoumigi_005 --file previous_10Hz/dakoumigi_005.txt
-
-dakouhidari_001:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_001 --output data/previous_dakouhidari_001 --file previous_10Hz/dakouhidari_001.txt
-
-dakouhidari_002:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_002 --output data/previous_dakouhidari_002 --file previous_10Hz/dakouhidari_002.txt
-
-dakouhidari_003:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_003 --output data/previous_dakouhidari_003 --file previous_10Hz/dakouhidari_003.txt
-
-dakouhidari_004:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/dakouhidari_004 --output data/previous_dakouhidari_004 --file previous_10Hz/dakouhidari_004.txt
-
-sayu:
-	make right
-	make left
-
-right:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/right_001/ --output data/previous_trimright --file previous_10Hz/trimright.txt
-
-left:
-	$(PYTHON) scripts/trimming.py --input previous_10Hz/left_001/ --output data/previous_trimleft --file previous_10Hz/trimleft.txt
-
-hukki:
-	make hukki_1
-	make hukki_2
-	make hukki_3
-	make hukki_4
-
-hukki_1:
-	make hukki_1_01
-	make hukki_1_02
-	make hukki_1_03
-	make hukki_1_04
-	make hukki_1_05
-	make hukki_1_06
-	make hukki_1_07
-	make hukki_1_08
-	make hukki_1_09
-	make hukki_1_10
-
-hukki_1_01:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_01/ --output data/hukki_1_01 --file data_10Hz/hukki_1_01.txt
-
-hukki_1_02:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_02/ --output data/hukki_1_02 --file data_10Hz/hukki_1_02.txt
-
-hukki_1_03:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_03/ --output data/hukki_1_03 --file data_10Hz/hukki_1_03.txt
-
-hukki_1_04:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_04/ --output data/hukki_1_04 --file data_10Hz/hukki_1_04.txt
-
-hukki_1_05:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_05/ --output data/hukki_1_05 --file data_10Hz/hukki_1_05.txt
-
-hukki_1_06:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_06/ --output data/hukki_1_06 --file data_10Hz/hukki_1_06.txt
-
-hukki_1_07:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_07/ --output data/hukki_1_07 --file data_10Hz/hukki_1_07.txt
-
-hukki_1_08:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_08/ --output data/hukki_1_08 --file data_10Hz/hukki_1_08.txt
-
-hukki_1_09:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_09/ --output data/hukki_1_09 --file data_10Hz/hukki_1_09.txt
-
-hukki_1_10:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_1_10/ --output data/hukki_1_10 --file data_10Hz/hukki_1_10.txt
-
-hukki_2:
-	make hukki_2_01
-	make hukki_2_02
-	make hukki_2_03
-	make hukki_2_04
-	make hukki_2_05
-	make hukki_2_06
-	make hukki_2_07
-	make hukki_2_08
-hukki_2_01:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_01/ --output data/hukki_2_01 --file data_10Hz/hukki_2_01.txt
-
-hukki_2_02:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_02/ --output data/hukki_2_02 --file data_10Hz/hukki_2_02.txt
-
-hukki_2_03:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_03/ --output data/hukki_2_03 --file data_10Hz/hukki_2_03.txt
-
-hukki_2_04:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_04/ --output data/hukki_2_04 --file data_10Hz/hukki_2_04.txt
-
-hukki_2_05:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_05/ --output data/hukki_2_05 --file data_10Hz/hukki_2_05.txt
-
-hukki_2_06:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_06/ --output data/hukki_2_06 --file data_10Hz/hukki_2_06.txt
-
-hukki_2_07:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_07/ --output data/hukki_2_07 --file data_10Hz/hukki_2_07.txt
-
-hukki_2_08:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_08/ --output data/hukki_2_08 --file data_10Hz/hukki_2_08.txt
-
-hukki_3:
-	make hukki_3_01
-	make hukki_3_02
-hukki_3_01:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_3_01/ --output data/hukki_3_01 --file data_10Hz/hukki_3_01.txt
-
-hukki_3_02:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_3_02/ --output data/hukki_3_02 --file data_10Hz/hukki_3_02.txt
-
-	
-hukki_4:
-	make hukki_4_01
-	make hukki_4_02
-	make hukki_4_03
-	make hukki_4_04
-	make hukki_4_05
-
-hukki_4_01:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_01/ --output data/hukki_4_01 --file data_10Hz/hukki_4_01.txt
-
-hukki_4_02:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_02/ --output data/hukki_4_02 --file data_10Hz/hukki_4_02.txt
-
-hukki_4_03:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_03/ --output data/hukki_4_03 --file data_10Hz/hukki_4_03.txt
-
-hukki_4_04:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_04/ --output data/hukki_4_04 --file data_10Hz/hukki_4_04.txt
-
-hukki_4_05:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_4_05/ --output data/hukki_4_05 --file data_10Hz/hukki_4_05.txt
+testaaa: $(TRM_ALL)
