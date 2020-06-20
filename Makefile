@@ -159,7 +159,42 @@ left:
 	$(PYTHON) scripts/trimming.py --input previous_10Hz/left_001/ --output data/previous_trimleft --file previous_10Hz/trimleft.txt
 
 hukki:
+	make hukki_2
 	make hukki_4
+hukki_2:
+	make hukki_2_01
+	make hukki_2_02
+	make hukki_2_03
+	make hukki_2_04
+	make hukki_2_05
+	make hukki_2_06
+	make hukki_2_07
+	make hukki_2_08
+hukki_2_01:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_01/ --output data/hukki_2_01 --file data_10Hz/hukki_2_01.txt
+
+hukki_2_02:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_02/ --output data/hukki_2_02 --file data_10Hz/hukki_2_02.txt
+
+hukki_2_03:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_03/ --output data/hukki_2_03 --file data_10Hz/hukki_2_03.txt
+
+hukki_2_04:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_04/ --output data/hukki_2_04 --file data_10Hz/hukki_2_04.txt
+
+hukki_2_05:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_05/ --output data/hukki_2_05 --file data_10Hz/hukki_2_05.txt
+
+hukki_2_06:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_06/ --output data/hukki_2_06 --file data_10Hz/hukki_2_06.txt
+
+hukki_2_07:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_07/ --output data/hukki_2_07 --file data_10Hz/hukki_2_07.txt
+
+hukki_2_08:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_08/ --output data/hukki_2_08 --file data_10Hz/hukki_2_08.txt
+
+
 hukki_4:
 	make hukki_4_01
 	make hukki_4_02
