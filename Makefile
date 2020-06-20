@@ -160,6 +160,7 @@ left:
 
 hukki:
 	make hukki_2
+	make hukki_3
 	make hukki_4
 hukki_2:
 	make hukki_2_01
@@ -193,7 +194,17 @@ hukki_2_07:
 
 hukki_2_08:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/hukki_2_08/ --output data/hukki_2_08 --file data_10Hz/hukki_2_08.txt
-
+	
+hukki_3:
+	make hukki_3_01
+	make hukki_3_02
+	make hukki_3_03
+	make hukki_3_04
+	make hukki_3_05
+	make hukki_3_06
+	make hukki_3_07
+	make hukki_3_08
+	make hukki_3_09
 
 hukki_4:
 	make hukki_4_01
